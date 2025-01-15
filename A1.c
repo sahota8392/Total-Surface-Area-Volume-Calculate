@@ -13,11 +13,11 @@ source 5: W3Schools - https://www.w3schools.com/c/c_functions_parameters.php (fu
 */
 
 int n;  //user input for spherical segments to evaluate
-int r;  //radius
-int ha; //top height
-int hb; //bottom height
+float r;  //radius
+float ha; //top height
+float hb; //bottom height
 
-int validate_real_pos(int r, int ha, int hb) //validate data inputs (r,ha,hb) are real positives
+int validate_real_pos(float r, float ha, float hb) //validate data inputs (r,ha,hb) are real positives
 {
   if (r < 0 || ha < 0 || hb <0){
     printf("Invalid input, all 3 parameters must be real positive only! \n");
@@ -26,10 +26,10 @@ int validate_real_pos(int r, int ha, int hb) //validate data inputs (r,ha,hb) ar
   return true;  //valid
 }
 
-int validate_height(int ha, int hb) //validate ha ≥ hb
+int validate_height(float ha, float hb) //validate ha ≥ hb
 {
   if (ha <= hb){
-    printf("Invalid Input, ha=%d, hb=%d. ha must be greater than or equal to hb \n", ha, hb);
+    printf("Invalid Input, ha=%.2f, hb=%.2f. ha must be greater than or equal to hb \n", ha, hb);
     return false; //invalid
   }
   return true;  //valid
@@ -41,13 +41,13 @@ int data() //get data for radius and heights
   //loops until r, ha, hb is obtained for each number of 'n' segments
   for(int i=1; i<=n;){
     printf("What is the radius of the sphere (R)? \n");
-    scanf("%d", &r);
+    scanf("%f", &r);
     printf("What is the height of the top area of the spherical segment (ha)? \n");
-    scanf("%d", &ha);
+    scanf("%f", &ha);
     printf("What is the height of the bottom area of the spherical segment (hb)? \n");
-    scanf("%d", &hb);
+    scanf("%f", &hb);
 
-    printf("Entered data: R=%d, ha=%d, hb=%d \n", r, ha, hb);
+    printf("Entered data: R=%.2f, ha=%.2f, hb=%.2f \n", r, ha, hb);
     if (validate_real_pos(r, ha, hb) && (validate_height(ha, hb))){  //validate parameters are real positive
       i++;  //valid then increment
     }
