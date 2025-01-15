@@ -12,6 +12,10 @@ source 3: W3Schools - https://www.w3schools.com/c/c_user_input.php (store & prin
 int main() 
 {
   int n;  //user input to be within range of min(2) and max(10)
+  int r;  //user inputs radius
+  int ha; //user inputs top height
+  int hb; //user inputs bottom height
+
   int min = 2;
   int max = 10 ;
 
@@ -22,4 +26,16 @@ int main()
     } 
   } while ( n < min || n > max);
   printf("Valid number:  %d \n", n);
+
+  //loop until "n" number of spherical segment parameters are obtained
+  for(int i=1; i<=n; i++){
+    printf("What is the radius of the sphere (R)? \n");
+    scanf("%d", &r);
+    printf("What is the height of the top area of the spherical segment (ha)? \n");
+    scanf("%d", &ha);
+    printf("What is the height of the bottom area of the spherical segment (hb)? \n");
+    scanf("%d", &hb);
+
+    printf("Entered data: R=%d, ha=%d, hb=%d \n", r, ha, hb);
+  }
 }
