@@ -35,6 +35,19 @@ int validate_height(float ha, float hb) //validate ha ≥ hb
   return true;  //valid
 }
 
+int validate_radius(float r, float ha, float hb) //validate R is greater than ha & hb
+{
+  if (r < ha){
+    printf("Invalid Input, R=%.2f ha=%.2f. R must be greater than or equal to ha \n", r, ha);
+    return false;
+  } else if (r < hb){
+    printf("Invalid Input, R=%.2f hb=%.2f. R must be greater than or equal to hb \n", r, hb);
+    return false;
+  } else {
+    return true;
+  }
+}
+
 
 int data() //get data for radius and heights
 {
@@ -48,7 +61,7 @@ int data() //get data for radius and heights
     scanf("%f", &hb);
 
     printf("Entered data: R=%.2f, ha=%.2f, hb=%.2f \n", r, ha, hb);
-    if (validate_real_pos(r, ha, hb) && (validate_height(ha, hb))){  //validate parameters are real positive
+    if (validate_real_pos(r, ha, hb) && (validate_height(ha, hb)) && validate_radius(r, ha, hb)){
       i++;  //valid then increment
     }
   }
