@@ -26,6 +26,15 @@ int validate_real_pos(int r, int ha, int hb) //validate data inputs (r,ha,hb) ar
   return true;  //valid
 }
 
+int validate_height(int ha, int hb) //validate ha ≥ hb
+{
+  if (ha <= hb){
+    printf("Invalid Input, ha=%d, hb=%d. ha must be greater than or equal to hb \n", ha, hb);
+    return false; //invalid
+  }
+  return true;  //valid
+}
+
 
 int data() //get data for radius and heights
 {
@@ -39,7 +48,7 @@ int data() //get data for radius and heights
     scanf("%d", &hb);
 
     printf("Entered data: R=%d, ha=%d, hb=%d \n", r, ha, hb);
-    if (validate_real_pos(r, ha, hb)){  //validate parameters are real positive
+    if (validate_real_pos(r, ha, hb) && (validate_height(ha, hb))){  //validate parameters are real positive
       i++;  //valid then increment
     }
   }
