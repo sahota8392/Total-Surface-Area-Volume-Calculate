@@ -107,29 +107,32 @@ int validate_radius(float r, float ha, float hb) //validate R is greater than ha
 
 int data() //get data for radius and heights
 {
-  printf("What is the radius of the sphere (R)? \n");
-  scanf("%f", &r);
-  printf("What is the height of the top area of the spherical segment (ha)? \n");
-  scanf("%f", &ha);
-  printf("What is the height of the bottom area of the spherical segment (hb)? \n");
-  scanf("%f", &hb);
+  //loops until r, ha, hb is obtained for each number of 'n' segments
+  for(int i=1; i<=n;){
+    printf("What is the radius of the sphere (R)? \n");
+    scanf("%f", &r);
+    printf("What is the height of the top area of the spherical segment (ha)? \n");
+    scanf("%f", &ha);
+    printf("What is the height of the bottom area of the spherical segment (hb)? \n");
+    scanf("%f", &hb);
 
-  printf("Entered data: R=%.2f, ha=%.2f, hb=%.2f \n", r, ha, hb);
-  if (validate_real_pos(r, ha, hb) && (validate_height(ha, hb)) && validate_radius(r, ha, hb)){
+    printf("Entered data: R=%.2f, ha=%.2f, hb=%.2f \n", r, ha, hb);
+    if (validate_real_pos(r, ha, hb) && (validate_height(ha, hb)) && validate_radius(r, ha, hb)){
 
-    float area = total_surface(
-      lateral_area(r, height(ha,hb)),
-      bottom_area(b(r, hb)), 
-      top_area(a(r, ha))
-      );
+      float area = total_surface(
+        lateral_area(r, height(ha,hb)),
+        bottom_area(b(r, hb)), 
+        top_area(a(r, ha))
+        );
 
-    float vol = volume(
-      a(r, ha), 
-      b(r, hb), 
-      height(ha,hb)
-      );
-
-    printf("Total Surface Area =%.2f  Volume=%.2f \n", area, vol);
+      float vol = volume(
+        a(r, ha), 
+        b(r, hb), 
+        height(ha,hb)
+        );
+      printf("Total Surface Area =%.2f  Volume=%.2f \n", area, vol);
+      i++;
+    }
   }
 }
 
@@ -138,12 +141,8 @@ int main() //prompt user to input valid number (n) between [2,10]
 {
   int min = 2;
   int max = 10;
-  int n = -1;
 
   do {    //loops until valid "n" input is given within [2,10]
-    printf("How many spherical segments you want to evaluate [2-10]? \n");
-    scanf("%d", &n);
-
     if (n < min || n > max) {
       printf("How many spherical segments you want to evaluate [2-10]? \n");
       scanf("%d", &n);
