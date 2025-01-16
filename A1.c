@@ -1,5 +1,7 @@
-#include <stdio.h>    // header for standard C library
+#include <stdio.h>    //header for standard C library
 #include <stdbool.h>  //boolean
+#include <math.h>     //to calculate math formulas
+#define PI 3.14159265359  //macro to replace 'PI' with value
 
 /**
 * Ask the user to input a number between 2 and 10 & continue asking until valid input within range is provided.
@@ -17,6 +19,17 @@ float r;  //radius
 float ha; //top height
 float hb; //bottom height
 
+
+float height(float ha, float hb){   //h = ha - hb
+  float h = ha-hb;
+  return h;
+}
+
+float lateral_area(float r, float h){ //2*PI*R*h calls upon height() function
+  float lateral = 2 * PI * r * h;
+  printf("LATERAL: %.2f \n", lateral);
+}
+
 int validate_real_pos(float r, float ha, float hb) //validate data inputs (r,ha,hb) are real positives
 {
   if (r < 0 || ha < 0 || hb <0){
@@ -26,6 +39,7 @@ int validate_real_pos(float r, float ha, float hb) //validate data inputs (r,ha,
   return true;  //valid
 }
 
+
 int validate_height(float ha, float hb) //validate ha ≥ hb
 {
   if (ha <= hb){
@@ -34,6 +48,7 @@ int validate_height(float ha, float hb) //validate ha ≥ hb
   }
   return true;  //valid
 }
+
 
 int validate_radius(float r, float ha, float hb) //validate R is greater than ha & hb
 {
@@ -62,6 +77,7 @@ int data() //get data for radius and heights
 
     printf("Entered data: R=%.2f, ha=%.2f, hb=%.2f \n", r, ha, hb);
     if (validate_real_pos(r, ha, hb) && (validate_height(ha, hb)) && validate_radius(r, ha, hb)){
+      lateral_area(r, height(ha, hb));
       i++;  //valid then increment
     }
   }
