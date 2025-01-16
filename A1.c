@@ -98,7 +98,8 @@ int data() //get data for radius and heights
 
     printf("Entered data: R=%.2f, ha=%.2f, hb=%.2f \n", r, ha, hb);
     if (validate_real_pos(r, ha, hb) && (validate_height(ha, hb)) && validate_radius(r, ha, hb)){
-      volume(a(r, ha), b(r, hb), height(ha,hb));
+      float vol = volume(a(r, ha), b(r, hb), height(ha,hb));
+      printf("Total Surface Area = ??  Volume=%.2f \n", vol);
       i++;  //valid then increment
     }
   }
