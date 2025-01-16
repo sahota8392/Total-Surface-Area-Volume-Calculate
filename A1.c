@@ -137,6 +137,7 @@ int main() //prompt user to input valid number (n) between [2,10]
 {
   int min = 2;
   int max = 10;
+  int n = -1;
 
   do {    //loops until valid "n" input is given within [2,10]
     printf("How many spherical segments you want to evaluate [2-10]? \n");
