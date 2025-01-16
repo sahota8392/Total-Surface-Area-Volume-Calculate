@@ -27,7 +27,7 @@ float a(float r, float ha) {    //a = sqrt[r^2 - ha^2]
 }
 
 
-float b(float r, float ba) {    //b = sqrt[r^2 - hb^2]
+float b(float r, float hb) {    //b = sqrt[r^2 - hb^2]
   float bh = (r * r) - (hb * hb);
   float b = sqrt(bh);
   return b;
@@ -49,7 +49,26 @@ float volume(float a, float b, float h){
 
 float lateral_area(float r, float h){ //2*PI*R*h calls upon height() function
   float lateral = 2 * PI * r * h;
+  return lateral;
 }
+
+
+float bottom_area(float b){ //PI * b^2
+  float bottom = PI * (b * b);
+  return bottom;
+}
+
+
+float top_area(float a){ //PI * a^2
+  float top = PI * (a * a);
+  return top;
+}
+
+float total_surface(float lateral, float bottom, float top){
+  float total_surface = lateral + bottom + top;
+  return total_surface;
+}
+
 
 int validate_real_pos(float r, float ha, float hb) //validate data inputs (r,ha,hb) are real positives
 {
@@ -98,8 +117,9 @@ int data() //get data for radius and heights
 
     printf("Entered data: R=%.2f, ha=%.2f, hb=%.2f \n", r, ha, hb);
     if (validate_real_pos(r, ha, hb) && (validate_height(ha, hb)) && validate_radius(r, ha, hb)){
+      float area = total_surface(lateral_area(r,height(ha,hb)), (bottom_area(b(r, hb))), top_area(a(r,ha)));
       float vol = volume(a(r, ha), b(r, hb), height(ha,hb));
-      printf("Total Surface Area = ??  Volume=%.2f \n", vol);
+      printf("Total Surface Area =%.2f  Volume=%.2f \n", area, vol);
       i++;  //valid then increment
     }
   }
