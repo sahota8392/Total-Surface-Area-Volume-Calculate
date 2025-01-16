@@ -20,14 +20,35 @@ float ha; //top height
 float hb; //bottom height
 
 
+float a(float r, float ha) {    //a = sqrt[r^2 - ha^2]
+  float rh = (r * r) - (ha * ha);
+  float a = sqrt(rh);
+  return a;
+}
+
+
+float b(float r, float ba) {    //b = sqrt[r^2 - hb^2]
+  float bh = (r * r) - (hb * hb);
+  float b = sqrt(bh);
+  return b;
+}
+
+
 float height(float ha, float hb){   //h = ha - hb
   float h = ha-hb;
   return h;
 }
 
+float volume(float a, float b, float h){
+  float a_squared = a * a;
+  float b_squared = b * b;
+  float volume = (1.0/6.0) * PI * h * ((3 * a_squared) + (3 * b_squared) + h);
+  return volume;
+}
+
+
 float lateral_area(float r, float h){ //2*PI*R*h calls upon height() function
   float lateral = 2 * PI * r * h;
-  printf("LATERAL: %.2f \n", lateral);
 }
 
 int validate_real_pos(float r, float ha, float hb) //validate data inputs (r,ha,hb) are real positives
@@ -77,7 +98,7 @@ int data() //get data for radius and heights
 
     printf("Entered data: R=%.2f, ha=%.2f, hb=%.2f \n", r, ha, hb);
     if (validate_real_pos(r, ha, hb) && (validate_height(ha, hb)) && validate_radius(r, ha, hb)){
-      lateral_area(r, height(ha, hb));
+      volume(a(r, ha), b(r, hb), height(ha,hb));
       i++;  //valid then increment
     }
   }
