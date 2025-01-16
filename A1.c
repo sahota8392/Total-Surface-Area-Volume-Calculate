@@ -42,7 +42,8 @@ float height(float ha, float hb){   //h = ha - hb
 float volume(float a, float b, float h){
   float a_squared = a * a;
   float b_squared = b * b;
-  float volume = (1.0/6.0) * PI * h * ((3 * a_squared) + (3 * b_squared) + h);
+  float h_squared = h * h;
+  float volume = (1.0/6.0) * PI * h * (3 * a_squared + 3 * b_squared + h_squared);
   return volume;
 }
 
