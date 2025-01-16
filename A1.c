@@ -105,20 +105,10 @@ int validate_radius(float r, float ha, float hb) //validate R is greater than ha
 }
 
 
-int main() //prompt user to input valid number (n) between [2,10]
+int data() //get data for radius and heights
 {
-  int min = 2;
-  int max = 10;
-
-  do {    //loops until valid "n" input is given within [2,10]
-    if (n < min || n > max) {
-      printf("How many spherical segments you want to evaluate [2-10]? \n");
-      scanf("%d", &n);
-    } 
-  } while ( n < min || n > max);
-
-  for(int count=1; count <= n; count++){
-    printf("Obtaining data for spherical segment number %d \n", count);
+  //loops until r, ha, hb is obtained for each number of 'n' segments
+  for(int i=1; i<=n;){
     printf("What is the radius of the sphere (R)? \n");
     scanf("%f", &r);
     printf("What is the height of the top area of the spherical segment (ha)? \n");
@@ -141,6 +131,26 @@ int main() //prompt user to input valid number (n) between [2,10]
         height(ha,hb)
         );
       printf("Total Surface Area =%.2f  Volume=%.2f \n", area, vol);
+      i++;
     }
+  }
+}
+
+
+int main() //prompt user to input valid number (n) between [2,10]
+{
+  int min = 2;
+  int max = 10;
+
+  do {    //loops until valid "n" input is given within [2,10]
+    if (n < min || n > max) {
+      printf("How many spherical segments you want to evaluate [2-10]? \n");
+      scanf("%d", &n);
+    } 
+  } while ( n < min || n > max);
+
+  for(int count=1; count <= n; count++){
+    printf("Obtaining data for spherical segment number %d \n", count);
+    data(); //call data function to get r, ha, hb
   }
 }
