@@ -65,6 +65,7 @@ float top_area(float a){ //PI * a^2
   return top;
 }
 
+
 float total_surface(float lateral, float bottom, float top){
   float total_surface = lateral + bottom + top;
   return total_surface;
@@ -109,7 +110,9 @@ int main() //get data for radius and heights
 {
   int min = 2;
   int max = 10;
-  
+  float avg_surface;  //sum result for average
+  float avg_volume;   //sum result for average
+
   do {  //loops until valid "n" input is given within [2,10]
     if (n < min || n > max) {
       printf("How many spherical segments you want to evaluate [2-10]? \n");
@@ -128,7 +131,7 @@ int main() //get data for radius and heights
     printf("What is the height of the bottom area of the spherical segment (hb)? \n");
     scanf("%f", &hb);
 
-    printf("Entered data: R=%.2f, ha=%.2f, hb=%.2f \n", r, ha, hb);
+    printf("Entered data: R= %.2f, ha= %.2f, hb= %.2f \n", r, ha, hb);
     if (validate_real_pos(r, ha, hb) && (validate_height(ha, hb)) && validate_radius(r, ha, hb)){
 
       float area = total_surface(
@@ -142,8 +145,13 @@ int main() //get data for radius and heights
         b(r, hb), 
         height(ha,hb)
         );
-      printf("Total Surface Area =%.2f  Volume=%.2f \n", area, vol);
+      printf("Total Surface Area = %.2f  Volume= %.2f \n", area, vol);
+
+      avg_surface += area;
+      avg_volume += vol;
       count++;
     }
   }
+  printf("Average Surface Area = %.2f  Average Volume= %.2f \n", avg_surface, avg_volume);
+
 }
