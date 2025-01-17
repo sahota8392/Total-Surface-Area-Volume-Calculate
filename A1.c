@@ -110,8 +110,8 @@ int main() //get data for radius and heights
 {
   int min = 2;
   int max = 10;
-  float avg_surface;  //sum result for average
-  float avg_volume;   //sum result for average
+  float sum_surface;  //sum result for average
+  float sum_volume;   //sum result for average
 
   do {  //loops until valid "n" input is given within [2,10]
     if (n < min || n > max) {
@@ -147,11 +147,13 @@ int main() //get data for radius and heights
         );
       printf("Total Surface Area = %.2f  Volume= %.2f \n", area, vol);
 
-      avg_surface += area;
-      avg_volume += vol;
+      sum_surface += area;
+      sum_volume += vol;
       count++;
     }
   }
+  float avg_surface = sum_surface/n;
+  float avg_volume = sum_volume/n;
   printf("Average Surface Area = %.2f  Average Volume= %.2f \n", avg_surface, avg_volume);
 
 }
